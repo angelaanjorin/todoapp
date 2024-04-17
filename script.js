@@ -2,6 +2,7 @@
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 const todoButton = document.getElementById("todo-button");
+const todoList = document.getElementById("todo-list");
 
 //Event Listeners
 todoButton.addEventListener('click', addTodo);
@@ -13,7 +14,7 @@ function addTodo(event){
     todoDiv.classList.add("todo");
     //Create LI
     const newTodo = document.createElement('li');
-    newTodo.innerText = 'hey';
+    newTodo.innerText = inputBox.value;
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo);
     //CHECK MARK BUTTON
@@ -28,4 +29,6 @@ function addTodo(event){
     todoDiv.appendChild(trashButton);
     //APEND TO LIST
     listContainer.appendChild(todoDiv);
+    //CLEAR INPUTBOX VALUE
+    inputBox.value = "";
 }
