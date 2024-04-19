@@ -13,16 +13,21 @@
 <body>
     <div class="todo-container">
         <div class="todo-app"><h2>My To-Do List</h2>
-            <div class="row">
-                <input type="text" id="input-box" placeholder="Add your task">
-                <button id="todo-button">Add</button>
+            <div class="new-todo">
+                <form id="todoform">
+                    <input type="text" name="newtodo" id= "newtodo" placeholder="Add my task">
+                    <button type="submit" id= "add-button">Add</button>
+                </form>
             </div>
-                <div id="list-container">
-                    <ul id="todo-list"></ul>
+            <div id="todo-list">
+                <div class="todo" id="0">
+                  <!-- <i class="fa-regular fa-circle"></i> -->  
+                  <i class="fa-solid fa-circle-check"></i>
+                  <p class="">Go get milk</p>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fas fa-trash"></i>
                 </div>
-                <!--<li class="checked">Task1</li>
-                <li>Task2</li>
-                <li>Task3</li>-->
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

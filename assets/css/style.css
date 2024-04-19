@@ -25,7 +25,7 @@
     margin-bottom: 20px;
 }
 
-.row{
+#todoform{
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -35,7 +35,7 @@ padding-left: 20px;
 margin-bottom: 25px;
 }
 
-input{
+#newtodo{
     flex: 1;
     border: none;
     outline: none;
@@ -44,18 +44,33 @@ input{
     font-size: 16px;
 }
 
-#todo-button{
+#add-button{
 border: none;
 outline: none;
 padding: 16px 50px;
-background: #BC4749;
-color: #ffffff;
+background: #A5BE00;
 font-size: 16px;
 cursor: pointer;
 border-radius: 40px;
 }
 
-#list-container{
+#error{
+    text-align: center;
+    background-color: #ffffff;
+    color: #ff5c5c;
+    margin: 24px auto 20px;
+    padding: 16px 0;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 540px;
+    display: none;
+}
+
+#pending-tasks {
+padding: 10px;
+}
+
+#todo-list{
     list-style: none;
 
 }
@@ -67,13 +82,14 @@ border-radius: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: 0.5s ease;
 }
 .todo li{
     flex: 1;
     padding: 10px;
 }
 
-.trash-btn, .complete-btn{
+.trash-btn, .edit-btn{
     background: #BC4749; 
     color:#ffffff; 
     border: none;
@@ -81,12 +97,25 @@ border-radius: 40px;
     cursor: pointer;
     font-size: 1rem;
 }
-.complete-btn{
+.edit-btn{
     background: #2d4b0e;
 }
 
-.fa-trash, .fa.check{
+.todo-item {
+    padding: 0rem 0.5rem;
+}
+
+.fa-trash, .fa.solid{
     pointer-events: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+.fall {
+    transform: translateY(10rem) rotateZ(20deg);
+    opacity: 0;
 }
 /**todo{
     height: 28px;
