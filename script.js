@@ -55,6 +55,19 @@ form.addEventListener('submit', function (event) {
           `;
         });
     }
-//Event Listeners
+//Event Listener for all the todos
+todosList.addEventListener('click',(event)=> {
+    const target = event.target;
+    const parentElement = target.parentNode;
+
+    if(parentElement.className !=='todo') return;
+
+    const todo = parentElement;
+    const todoId = Number(todo.id);
+
+
+    console.log(todoId);
+
+});
 
 //Functions
