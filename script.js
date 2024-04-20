@@ -47,6 +47,7 @@ form.addEventListener('submit', function (event) {
             }
        
        todoInput.value = "";
+       saveData();
         }
 
 //  RENDER TODOS
@@ -67,6 +68,7 @@ form.addEventListener('submit', function (event) {
           </div>
           `;
         });
+        saveData();
     }
 //Event Listener for all the todos
 todosList.addEventListener('click',(event)=> {
@@ -78,13 +80,12 @@ todosList.addEventListener('click',(event)=> {
 // TODO ID
     const todo = parentElement;
     const todoId = Number(todo.id);
-    console.log(todoId);
 
     // TARGET ACTION
     const action = target.dataset.action
     
     action === "check" && checkTodo(todoId);
-    action === "edit" && editTodo(todoId);
+    //action === "edit" && editTodo(todoId);
     action === "delete" && deleteTodo(todoId);
 
 });
@@ -97,15 +98,10 @@ function checkTodo(todoId){
     }));
 
     renderTodos();
+    saveData();
 }
 
 //EDIT A TODO
-function editTodo(todoId){
-    todos = todos.filter((todo, index) => index !==todoId);
-
-       //re-render
-       renderTodos();
-}
 
 // DELETE A TODO
     function deleteTodo(todoId){
@@ -113,4 +109,12 @@ function editTodo(todoId){
 
        //re-render
        renderTodos();
+       saveData();
     }
+    function saveData(){
+        localStorage.setItem("data", todosList.innerHTML);
+    }
+    function showTask(){
+        todosList.innerHTML = localStorage.getItem("data");
+    }
+    showTask()
