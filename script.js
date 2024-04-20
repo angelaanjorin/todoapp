@@ -5,6 +5,8 @@ const todosList = document.getElementById("todos-list");
 
 //VARS
 let todos = [];
+//let EditTodoId = -1;
+
 //FORM SUBMIT
 form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -28,15 +30,24 @@ form.addEventListener('submit', function (event) {
             alert("Todo`s input is empty");
         } else if (isDuplicate) {
             alert("Todo already exists!");
-        }
-        else {
-       todos.push ({
-        value : todoValue,
-        checked : false,
-    });
+        }//else {
+           // if(EditTodoId >= 0){
+                //update the edit todo
+                //todos = todos.map((todo, index) => ({
+                   // ...todo, 
+                  //  value: index === EditTodoId ? todoValue : todo.value
+                //}));
+                //EditTodoId = -1;
+            //}
+            else{
+                todos.push ({
+                value : todoValue,
+                checked : false,
+                })
+            }
+       
        todoInput.value = "";
-    };
-}
+        }
 
 //  RENDER TODOS
     function renderTodos(){
@@ -67,13 +78,14 @@ todosList.addEventListener('click',(event)=> {
 // TODO ID
     const todo = parentElement;
     const todoId = Number(todo.id);
+    console.log(todoId);
 
     // TARGET ACTION
     const action = target.dataset.action
     
     action === "check" && checkTodo(todoId);
-    //action === "edit" && editTodo(todoId);
-    //action === "delete" && deleteTodo(todoId);
+    action === "edit" && editTodo(todoId);
+    action === "delete" && deleteTodo(todoId);
 
 });
 
@@ -86,3 +98,19 @@ function checkTodo(todoId){
 
     renderTodos();
 }
+
+//EDIT A TODO
+function editTodo(todoId){
+    todos = todos.filter((todo, index) => index !==todoId);
+
+       //re-render
+       renderTodos();
+}
+
+// DELETE A TODO
+    function deleteTodo(todoId){
+       todos = todos.filter((todo, index) => index !==todoId);
+
+       //re-render
+       renderTodos();
+    }
