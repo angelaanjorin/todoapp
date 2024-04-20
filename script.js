@@ -47,10 +47,12 @@ form.addEventListener('submit', function (event) {
         todos.forEach((todo, index) => {
             todosList.innerHTML += `
             <div class="todo" id=${index}>
-            <i class= "fa ${todo.checked ? 'fa-circle-check' : 'regular fa-circle'}" ></i>
-            <p class="">${todo.value}</p>
-            <i class="fa-solid fa-pen-to-square"></i>
-            <i class="fas fa-trash"></i>
+            <i class= "${todo.checked ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle'}" 
+            data-action ="check"
+            ></i>
+            <p class=""data-action ="check">${todo.value}</p>
+            <i class="fa-solid fa-pen-to-square"data-action ="edit"></i>
+            <i class="fas fa-trash"data-action ="delete"></i>
           </div>
           `;
         });
@@ -62,12 +64,25 @@ todosList.addEventListener('click',(event)=> {
 
     if(parentElement.className !=='todo') return;
 
+// TODO ID
     const todo = parentElement;
     const todoId = Number(todo.id);
 
-
-    console.log(todoId);
+    // TARGET ACTION
+    const action = target.dataset.action
+    
+    action === "check" && checkTodo(todoId);
+    //action === "edit" && editTodo(todoId);
+    //action === "delete" && deleteTodo(todoId);
 
 });
 
-//Functions
+//CHECK A TODO
+function checkTodo(todoId){
+    todos = todos.map((todo, index) => ({
+        ...todo,
+        checked : index === todoId ? !todo.checked : todo.checked
+    }));
+
+    renderTodos();
+}
